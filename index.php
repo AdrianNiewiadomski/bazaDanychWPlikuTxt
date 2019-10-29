@@ -6,7 +6,7 @@
     </head>
     <body>
         <?php
-            $plik = fopen("plik.txt", "r");
+            $plik = @fopen("plik2.txt", "r") or die ("Błąd pliku!");
             echo fgets($plik);
             fclose($plik);
         ?>
