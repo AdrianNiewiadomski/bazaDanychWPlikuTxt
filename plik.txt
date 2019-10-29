@@ -1,0 +1,4 @@
+1 Jan Kowalski Monter 3500
+2 Robert Nowak Administrator 4500
+3 Zuzanna Wiśniewska Designer 4000
+4 Zenon Olszewski Developer 5000
