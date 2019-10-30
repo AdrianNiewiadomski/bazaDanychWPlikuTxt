@@ -20,7 +20,7 @@
 
             fclose($plik);
         ?>
-        <a href="#">Dodaj osobę</a>
+        <a href="formularz.html">Dodaj osobę</a>
 
         <table>
 			<tr>
