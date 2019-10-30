@@ -1,19 +1,42 @@
+/*
+    #e74c3c
+    #2ecc71
+    #3498db
+ */
+
 table, th, td {
     border: 2px solid #aaa;
     border-collapse: collapse;
     padding:10px;
 }
-a {
+a,
+form a,
+input[type="submit"] {
     display: block;
     width: 130px;
     text-align: center;
     text-decoration: none;
     color: white;
-    background-color: #3498db;
+    background-color: #2ecc71;
     padding: 10px;
     margin-bottom: 20px;
+    margin-right: 10px;
     border-radius: 5px;
 }
 a:hover{
+    background-color: #0eac51;
+}
+form a{
+    background-color: #e74c3c;
+    float:left;
+}
+form a:hover{
+    background-color: #c72c1c;
+}
+input[type="submit"] {
+    background-color: #3498db;
+    float:left;
+}
+input[type="submit"]:hover {
     background-color: #1478bb;
 }
