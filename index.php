@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>Baza Danych w pliku txt</title>
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
         <?php
