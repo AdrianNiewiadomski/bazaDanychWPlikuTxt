@@ -11,7 +11,10 @@
 
             while( !feof($plik)){
                     // echo fgets($plik) . "<br/>";
-                    $tablica[] = fgets($plik);
+                    //$tablica[] = fgets($plik);
+                    $tab = fgets($plik);
+                    if($tab!=null)
+    				    $tablica[] = $tab;
             }
 
             fclose($plik);
