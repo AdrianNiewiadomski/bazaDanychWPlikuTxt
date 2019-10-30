@@ -7,12 +7,18 @@
     <body>
         <?php
             $plik = @fopen("plik.txt", "r") or die ("Błąd pliku!");
+            $tablica = array();
 
             while( !feof($plik)){
-                echo fgets($plik) . "<br/>";
+                // echo fgets($plik) . "<br/>";
+                $tablica[] = fgets($plik);
             }
 
             fclose($plik);
+
+            foreach($tablica as $wiersz){
+                echo $wiersz . "<br/>";
+            }
         ?>
     </body>
 </html>
