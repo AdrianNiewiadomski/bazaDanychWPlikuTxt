@@ -20,6 +20,8 @@
 
             fclose($plik);
         ?>
+        <a href="#">Dodaj osobę</a>
+
         <table>
 			<tr>
 				<th>id</th>
