@@ -8,12 +8,17 @@
     <body>
         <?php
             if( isset( $_POST['id'] ) ){
-                echo $_POST['id'];
-                echo $_POST['imie'];
-                echo $_POST['nazwisko'];
-                echo $_POST['zawod'];
-                echo $_POST['pensja'];
-            }            
+                $plik = @fopen("plik.txt", "a") or die ("Błąd pliku!");
+
+                $linia = $_POST['id'] . " ";
+                $linia .= $_POST['imie'] . " ";
+                $linia .= $_POST['nazwisko'] . " ";
+                $linia .= $_POST['zawod'] . " ";
+                $linia .= $_POST['pensja'];
+
+                fwrite($plik, $linia);
+                fclose($plik);
+            }
 
             $plik = @fopen("plik.txt", "r") or die ("Błąd pliku!");
             $tablica = array();
