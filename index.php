@@ -7,11 +7,13 @@
     </head>
     <body>
         <?php
-            echo $_POST['id'];
-            echo $_POST['imie'];
-            echo $_POST['nazwisko'];
-            echo $_POST['zawod'];
-            echo $_POST['pensja'];
+            if( isset( $_POST['id'] ) ){
+                echo $_POST['id'];
+                echo $_POST['imie'];
+                echo $_POST['nazwisko'];
+                echo $_POST['zawod'];
+                echo $_POST['pensja'];
+            }            
 
             $plik = @fopen("plik.txt", "r") or die ("Błąd pliku!");
             $tablica = array();
