@@ -26,17 +26,28 @@ input[type="submit"] {
 a:hover{
     background-color: #0eac51;
 }
-form a{
+form a,
+.red{
     background-color: #e74c3c;
     float:left;
+    border: 1px solid lightgray;
+    margin: 0 5px;
 }
-form a:hover{
+form a:hover,
+.red:hover{
     background-color: #c72c1c;
 }
-input[type="submit"] {
+input[type="submit"],
+.blue {
     background-color: #3498db;
     float:left;
 }
-input[type="submit"]:hover {
+input[type="submit"]:hover,
+.blue:hover {
     background-color: #1478bb;
+}
+.blue,
+.red {
+    border: 1px solid lightgray;
+    margin: 0 5px;
 }

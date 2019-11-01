@@ -42,6 +42,7 @@
 				<th>Nazwisko</th>
 				<th>Zawod</th>
 				<th>Pensja</th>
+                <th>Opcje</th>
 			</tr>
             <?php
                 foreach($tablica as $wiersz){
@@ -53,6 +54,7 @@
 					echo "<td>$rekord[2]</td>";
 					echo "<td>$rekord[3]</td>";
 					echo "<td>$rekord[4]</td>";
+                    echo "<td><a href='#' class='blue'>Edytuj</a><a href='#' class='red'>Usuń</a></td>";
 					echo "</tr>";
                 }
             ?>
