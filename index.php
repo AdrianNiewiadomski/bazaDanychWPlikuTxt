@@ -14,7 +14,7 @@
                 $linia .= $_POST['imie'] . " ";
                 $linia .= $_POST['nazwisko'] . " ";
                 $linia .= $_POST['zawod'] . " ";
-                $linia .= $_POST['pensja'];
+                $linia .= $_POST['pensja'] . "\n";
 
                 fwrite($plik, $linia);
                 fclose($plik);
