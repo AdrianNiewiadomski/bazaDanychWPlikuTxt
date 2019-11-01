@@ -6,6 +6,13 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
+        <?php
+            if(isset($_GET['id'])){
+                echo $_GET['id'];
+            }
+
+        ?>
+
         <form action="index.php" method="post">
             id:<br/>
             <input type="text" name="id">

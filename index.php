@@ -33,7 +33,7 @@
 
             fclose($plik);
         ?>
-        <a href="formularz.html">Dodaj osobę</a>
+        <a href="formularz.php">Dodaj osobę</a>
 
         <table>
 			<tr>
@@ -54,7 +54,7 @@
 					echo "<td>$rekord[2]</td>";
 					echo "<td>$rekord[3]</td>";
 					echo "<td>$rekord[4]</td>";
-                    echo "<td><a href='#' class='blue'>Edytuj</a><a href='#' class='red'>Usuń</a></td>";
+                    echo "<td><a href='formularz.php?id=$rekord[0]' class='blue'>Edytuj</a><a href='#' class='red'>Usuń</a></td>";
 					echo "</tr>";
                 }
             ?>
