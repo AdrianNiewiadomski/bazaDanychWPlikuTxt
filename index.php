@@ -7,8 +7,19 @@
     </head>
     <body>
         <?php
+            $plik = @fopen("plik.txt", "r+") or die ("Błąd pliku!");
+            $tablica = array();
+
+            while( !feof($plik)){
+                    //echo fgets($plik) . "<br/>";
+                    //$tablica[] = fgets($plik);
+                    $tab = fgets($plik);
+                    if($tab!=null)
+                        $tablica[] = $tab;
+            }
+
             if( isset( $_POST['id'] ) ){
-                $plik = @fopen("plik.txt", "a") or die ("Błąd pliku!");
+                //$plik = @fopen("plik.txt", "a") or die ("Błąd pliku!");
 
                 $linia = $_POST['id'] . " ";
                 $linia .= $_POST['imie'] . " ";
@@ -16,19 +27,12 @@
                 $linia .= $_POST['zawod'] . " ";
                 $linia .= $_POST['pensja'] . "\n";
 
-                fwrite($plik, $linia);
-                fclose($plik);
-            }
+                fseek($plik, 0);
+                $tablica[intval($_POST['id'])-1] = $linia;
 
-            $plik = @fopen("plik.txt", "r") or die ("Błąd pliku!");
-            $tablica = array();
-
-            while( !feof($plik)){
-                    // echo fgets($plik) . "<br/>";
-                    //$tablica[] = fgets($plik);
-                    $tab = fgets($plik);
-                    if($tab!=null)
-    				    $tablica[] = $tab;
+                foreach($tablica as $wiersz){
+                    fwrite($plik, $wiersz);
+                }
             }
 
             fclose($plik);
