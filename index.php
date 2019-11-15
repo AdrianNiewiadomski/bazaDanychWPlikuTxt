@@ -26,10 +26,18 @@
                 $linia .= $_POST['nazwisko'] . " ";
                 $linia .= $_POST['zawod'] . " ";
                 $linia .= $_POST['pensja'] . "\n";
-
-                fseek($plik, 0);
                 $tablica[intval($_POST['id'])-1] = $linia;
 
+                fseek($plik, 0);
+                foreach($tablica as $wiersz){
+                    fwrite($plik, $wiersz);
+                }
+            }
+
+            if( isset($_GET['action']) ){
+                unset($tablica[ intval($_GET['id'])-1 ]);
+
+                fseek($plik, 0);
                 foreach($tablica as $wiersz){
                     fwrite($plik, $wiersz);
                 }
@@ -58,7 +66,10 @@
 					echo "<td>$rekord[2]</td>";
 					echo "<td>$rekord[3]</td>";
 					echo "<td>$rekord[4]</td>";
-                    echo "<td><a href='formularz.php?id=$rekord[0]' class='blue'>Edytuj</a><a href='#' class='red'>Usuń</a></td>";
+                    echo "<td>";
+                    echo "<a href='formularz.php?id=$rekord[0]' class='blue'>Edytuj</a>";
+                    echo "<a href='index.php?action=delete&id=$rekord[0]' class='red'>Usuń</a>";
+                    echo "</td>";
 					echo "</tr>";
                 }
             ?>
