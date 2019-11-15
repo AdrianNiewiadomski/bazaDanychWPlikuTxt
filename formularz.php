@@ -8,6 +8,7 @@
     <body>
         <?php
             $id =  "";
+            $nextId = "";
             $imie =  "";
             $nazwisko =  "";
             $zawod =  "";
@@ -19,7 +20,7 @@
                 //echo $_GET['id'];
                 $id = $_GET['id'];
 
-                // $plik = @fopen("plik.txt", "r") or die ("Błąd pliku!");
+                fgets($plik);
                 $i=1;
                 while( $i<$id){
                         $tab = fgets($plik);
@@ -33,13 +34,15 @@
                 $zawod = $rekord[3];
                 $pensja = $rekord[4];
             } else {
-                $i=0;
-                while( !feof($plik)){
-                        fgets($plik);
-                        echo $i;
-                        $i++;
-                }
-                $id=$i;
+                // $i=0;
+                // while( !feof($plik)){
+                //         fgets($plik);
+                //         //echo $i;
+                //         $i++;
+                // }
+                // $id=$i;
+                $id = explode(" ", fgets($plik) )[1];
+                $nextId = intval($id)+1;
             }
 
             fclose($plik);
@@ -50,6 +53,7 @@
 
             <?php
                 echo "<input type='text' name='id' value='$id'>";
+                echo "<input type='hidden' name='nextId' value='$nextId'>";
                 echo "<br/>Imię:<br/>";
                 echo "<input type='text' name='imie' value='$imie'>";
                 echo "<br/>Nazwisko:<br/>";

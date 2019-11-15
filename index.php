@@ -11,6 +11,7 @@
             $plik = @fopen("plik.txt", "r") or die ("Błąd pliku!");
             $tablica = array();
 
+            $pierwszaLinia = fgets($plik);
             while( !feof($plik)){
                     //echo fgets($plik) . "<br/>";
                     //$tablica[] = fgets($plik);
@@ -20,10 +21,7 @@
             }
             fclose($plik);
 
-            $plik = @fopen("plik.txt", "w") or die ("Błąd pliku!");
             if( isset( $_POST['id'] ) ){
-                //$plik = @fopen("plik.txt", "a") or die ("Błąd pliku!");
-
                 $linia = $_POST['id'] . " ";
                 $linia .= $_POST['imie'] . " ";
                 $linia .= $_POST['nazwisko'] . " ";
@@ -31,20 +29,17 @@
                 $linia .= $_POST['pensja'] . "\n";
                 $tablica[intval($_POST['id'])-1] = $linia;
 
-                // fseek($plik, 0);
-                // foreach($tablica as $wiersz){
-                //     fwrite($plik, $wiersz);
-                // }
+                if($_POST['nextId'] != ""){
+                    $pierwszaLinia = "NastepneId " . $_POST['nextId'] . "\n";
+                }
             }
 
             if( isset($_GET['action']) ){
                 unset($tablica[ intval($_GET['id'])-1 ]);
-
-                // fseek($plik, 0);
-                // foreach($tablica as $wiersz){
-                //     fwrite($plik, $wiersz);
-                // }
             }
+
+            $plik = @fopen("plik.txt", "w") or die ("Błąd pliku!");
+            fwrite($plik, $pierwszaLinia);
             foreach($tablica as $wiersz){
                 fwrite($plik, $wiersz);
             }
