@@ -2,3 +2,10 @@
 2 Robert Nowak Administrator 4500
 3 Zuzanna Wiśniewska Designer 4000
 4 Zenon Olszewski Developer 5000
+5 Krzysztof Głowacki Kierownik 6000
+6 Konstanty Kwalifikowany technik 3500
+7 Karol Jagiełło Tester 3800
+8 Krzysztof Karny Grafik 4200
+9 Zygmunt Kornik Developer 4500
+10 Stefan Kiepura Marketer 4300
+11 Alojzy Bąbel Monter 3500

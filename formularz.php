@@ -13,25 +13,36 @@
             $zawod =  "";
             $pensja = "";
 
+            $plik = @fopen("plik.txt", "r") or die ("Błąd pliku!");
+
             if(isset($_GET['id'])){
                 //echo $_GET['id'];
                 $id = $_GET['id'];
 
-                $plik = @fopen("plik.txt", "r") or die ("Błąd pliku!");
+                // $plik = @fopen("plik.txt", "r") or die ("Błąd pliku!");
                 $i=1;
                 while( $i<$id){
                         $tab = fgets($plik);
                         $i++;
                 }
                 $wiersz = fgets($plik);
-                fclose($plik);
+                // fclose($plik);
                 $rekord = explode(" ", $wiersz);
                 $imie = $rekord[1];
                 $nazwisko = $rekord[2];
                 $zawod = $rekord[3];
                 $pensja = $rekord[4];
+            } else {
+                $i=0;
+                while( !feof($plik)){
+                        fgets($plik);
+                        echo $i;
+                        $i++;
+                }
+                $id=$i;
             }
 
+            fclose($plik);
         ?>
 
         <form action="index.php" method="post">
