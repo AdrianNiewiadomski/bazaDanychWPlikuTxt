@@ -4,8 +4,6 @@ NastepneId 14
 3 Zuzanna Wiśniewska Designer 4000
 5 Krzysztof Głowacki Kierownik 6000
 7 Karol Jagiełło Tester 3800
-8 Krzysztof Karny Grafik 4200
 9 Zygmunt Kornik Developer 4500
 10 Stefan Kiepura Marketer 4300
-12 Szewczyk Dratewka Szewc 3500
 13 Konstanty Kwalifikowany Technik 3500

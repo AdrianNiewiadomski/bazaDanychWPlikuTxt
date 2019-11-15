@@ -27,7 +27,15 @@
                 $linia .= $_POST['nazwisko'] . " ";
                 $linia .= $_POST['zawod'] . " ";
                 $linia .= $_POST['pensja'] . "\n";
-                $tablica[intval($_POST['id'])-1] = $linia;
+                // $tablica[intval($_POST['id'])-1] = $linia;
+                $i=0;
+                foreach ($tablica as $wiersz) {
+                    if(explode(" ", $wiersz)[0] == intval($_POST['id']) ){
+                        $tablica[$i] = $linia;
+                        break;
+                    }
+                    $i++;
+                }
 
                 if($_POST['nextId'] != ""){
                     $pierwszaLinia = "NastepneId " . $_POST['nextId'] . "\n";
@@ -35,7 +43,15 @@
             }
 
             if( isset($_GET['action']) ){
-                unset($tablica[ intval($_GET['id'])-1 ]);
+                // unset($tablica[ intval($_GET['id'])-1 ]);
+                $i=0;
+                foreach ($tablica as $wiersz) {
+                    if(explode(" ", $wiersz)[0] == intval($_GET['id']) ){
+                        unset($tablica[$i]);
+                        break;
+                    }
+                    $i++;
+                }
             }
 
             $plik = @fopen("plik.txt", "w") or die ("Błąd pliku!");

@@ -21,12 +21,17 @@
                 $id = $_GET['id'];
 
                 fgets($plik);
-                $i=1;
-                while( $i<$id){
-                        $tab = fgets($plik);
-                        $i++;
+                // $i=1;
+                // while( $i<$id){
+                while(true){
+                    // $tab = fgets($plik);
+                    // $i++;
+                    $wiersz = fgets($plik);
+                    if(explode(" ", $wiersz)[0]==$id){
+                        break;
+                    }
                 }
-                $wiersz = fgets($plik);
+                // $wiersz = fgets($plik);
                 // fclose($plik);
                 $rekord = explode(" ", $wiersz);
                 $imie = $rekord[1];
