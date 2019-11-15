@@ -7,7 +7,8 @@
     </head>
     <body>
         <?php
-            $plik = @fopen("plik.txt", "r+") or die ("Błąd pliku!");
+            // $plik = @fopen("plik.txt", "r+") or die ("Błąd pliku!");
+            $plik = @fopen("plik.txt", "r") or die ("Błąd pliku!");
             $tablica = array();
 
             while( !feof($plik)){
@@ -17,7 +18,9 @@
                     if($tab!=null)
                         $tablica[] = $tab;
             }
+            fclose($plik);
 
+            $plik = @fopen("plik.txt", "w") or die ("Błąd pliku!");
             if( isset( $_POST['id'] ) ){
                 //$plik = @fopen("plik.txt", "a") or die ("Błąd pliku!");
 
@@ -28,21 +31,23 @@
                 $linia .= $_POST['pensja'] . "\n";
                 $tablica[intval($_POST['id'])-1] = $linia;
 
-                fseek($plik, 0);
-                foreach($tablica as $wiersz){
-                    fwrite($plik, $wiersz);
-                }
+                // fseek($plik, 0);
+                // foreach($tablica as $wiersz){
+                //     fwrite($plik, $wiersz);
+                // }
             }
 
             if( isset($_GET['action']) ){
                 unset($tablica[ intval($_GET['id'])-1 ]);
 
-                fseek($plik, 0);
-                foreach($tablica as $wiersz){
-                    fwrite($plik, $wiersz);
-                }
+                // fseek($plik, 0);
+                // foreach($tablica as $wiersz){
+                //     fwrite($plik, $wiersz);
+                // }
             }
-
+            foreach($tablica as $wiersz){
+                fwrite($plik, $wiersz);
+            }
             fclose($plik);
         ?>
         <a href="formularz.php">Dodaj osobę</a>
