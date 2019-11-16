@@ -54,12 +54,12 @@
         ?>
 
         <form action="index.php" method="post">
-            id:<br/>
+            <!-- id:<br/> -->
 
             <?php
-                echo "<input type='text' name='id' value='$id'>";
+                echo "<input type='hidden' name='id' value='$id'>";
                 echo "<input type='hidden' name='nextId' value='$nextId'>";
-                echo "<br/>Imię:<br/>";
+                echo "Imię:<br/>";
                 echo "<input type='text' name='imie' value='$imie'>";
                 echo "<br/>Nazwisko:<br/>";
                 echo "<input type='text' name='nazwisko' value='$nazwisko'>";

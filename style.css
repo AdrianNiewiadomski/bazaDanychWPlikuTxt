@@ -9,6 +9,12 @@ table, th, td {
     border-collapse: collapse;
     padding:10px;
 }
+thead{
+    background-color: #ccc;
+}
+tbody tr:nth-child(even){
+    background-color: #eee;
+}
 a,
 form a,
 input[type="submit"] {
