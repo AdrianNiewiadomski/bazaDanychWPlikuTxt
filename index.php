@@ -29,12 +29,17 @@
                 $linia .= $_POST['pensja'] . "\n";
                 // $tablica[intval($_POST['id'])-1] = $linia;
                 $i=0;
+                $idInTable=false;
                 foreach ($tablica as $wiersz) {
                     if(explode(" ", $wiersz)[0] == intval($_POST['id']) ){
                         $tablica[$i] = $linia;
+                        $idInTable=true;
                         break;
                     }
                     $i++;
+                }
+                if(!$idInTable){
+                    $tablica[] = $linia;
                 }
 
                 if($_POST['nextId'] != ""){
@@ -42,7 +47,7 @@
                 }
             }
 
-            if( isset($_GET['action']) ){
+            if( isset($_GET['id']) ){
                 // unset($tablica[ intval($_GET['id'])-1 ]);
                 $i=0;
                 foreach ($tablica as $wiersz) {
@@ -54,6 +59,11 @@
                 }
             }
 
+            $klucz = "";
+            if( isset( $_POST['klucz'] ) ){
+                $klucz = $_POST['klucz'];
+            }
+
             $plik = @fopen("plik.txt", "w") or die ("Błąd pliku!");
             fwrite($plik, $pierwszaLinia);
             foreach($tablica as $wiersz){
@@ -61,6 +71,18 @@
             }
             fclose($plik);
         ?>
+
+        <form action="index.php" method="post">
+
+            <?php
+                echo "<input type='text' name='klucz' value='$klucz'>";
+             ?>
+
+            <input type="submit" value="Filtruj">
+        </form>
+
+        <br />
+
         <a href="formularz.php">Dodaj osobę</a>
 
         <table>
@@ -76,17 +98,21 @@
                 foreach($tablica as $wiersz){
                     // echo $wiersz . "<br/>";
                     $rekord = explode(" ", $wiersz);
-					echo '<tr>';
-					echo "<td>$rekord[0]</td>";
-					echo "<td>$rekord[1]</td>";
-					echo "<td>$rekord[2]</td>";
-					echo "<td>$rekord[3]</td>";
-					echo "<td>$rekord[4]</td>";
-                    echo "<td>";
-                    echo "<a href='formularz.php?id=$rekord[0]' class='blue'>Edytuj</a>";
-                    echo "<a href='index.php?action=delete&id=$rekord[0]' class='red'>Usuń</a>";
-                    echo "</td>";
-					echo "</tr>";
+
+                    if( (!empty($klucz) && strpos(strtolower($rekord[2]), strtolower($klucz) ) === 0) || $klucz==""){
+                    // if( (!empty($klucz) && strpos(strtolower($rekord[2]), $klucz) != false) || $klucz==""){
+    					echo '<tr>';
+    					echo "<td>$rekord[0]</td>";
+    					echo "<td>$rekord[1]</td>";
+    					echo "<td>$rekord[2]</td>";
+    					echo "<td>$rekord[3]</td>";
+    					echo "<td>$rekord[4]</td>";
+                        echo "<td>";
+                        echo "<a href='formularz.php?id=$rekord[0]' class='blue'>Edytuj</a>";
+                        echo "<a href='index.php?id=$rekord[0]' class='red'>Usuń</a>";
+                        echo "</td>";
+    					echo "</tr>";
+                    }
                 }
             ?>
         </table>

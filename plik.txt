@@ -1,9 +1,8 @@
-NastepneId 14
+NastepneId 16
 1 Jan Kowalski Monter 3500
 2 Robert Nowak Administrator 4500
-3 Zuzanna Wiśniewska Designer 4000
 5 Krzysztof Głowacki Kierownik 6000
 7 Karol Jagiełło Tester 3800
 9 Zygmunt Kornik Developer 4500
-10 Stefan Kiepura Marketer 4300
 13 Konstanty Kwalifikowany Technik 3500
+15 Zuzanna Wiśniewska Deisgner 4000
