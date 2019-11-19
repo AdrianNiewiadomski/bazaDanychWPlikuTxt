@@ -1,118 +1,71 @@
-<!DOCTYPE html>
-<html lang="pl">
-    <head>
-        <meta charset="utf-8">
-        <title>Baza Danych w pliku txt</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <?php
-            $plik = @fopen("plik.txt", "r") or die ("Błąd pliku!");
-            $tablica = array();
+<?php
+    $plik = @fopen("plik.txt", "r") or die ("Błąd pliku!");
+    $tablica = array();
 
-            $pierwszaLinia = fgets($plik);
-            while( !feof($plik)){
-                    $tab = fgets($plik);
-                    if($tab!=null)
-                        $tablica[] = $tab;
+    $pierwszaLinia = fgets($plik);
+    while( !feof($plik)){
+            $tab = fgets($plik);
+            if($tab!=null)
+                $tablica[] = $tab;
+    }
+    fclose($plik);
+
+    if( isset( $_POST['id'] ) ){
+        $linia = $_POST['id'] . " ";
+        $linia .= $_POST['imie'] . " ";
+        $linia .= $_POST['nazwisko'] . " ";
+        $linia .= $_POST['zawod'] . " ";
+        $linia .= $_POST['pensja'] . "\n";
+
+        $i=0;
+        $idInTable=false;
+        foreach ($tablica as $wiersz) {
+            if(explode(" ", $wiersz)[0] == intval($_POST['id']) ){
+                $tablica[$i] = $linia;
+                $idInTable=true;
+                break;
             }
-            fclose($plik);
+            $i++;
+        }
+        if(!$idInTable){
+            $tablica[] = $linia;
+        }
 
-            if( isset( $_POST['id'] ) ){
-                $linia = $_POST['id'] . " ";
-                $linia .= $_POST['imie'] . " ";
-                $linia .= $_POST['nazwisko'] . " ";
-                $linia .= $_POST['zawod'] . " ";
-                $linia .= $_POST['pensja'] . "\n";
+        if($_POST['nextId'] != ""){
+            $pierwszaLinia = "NastepneId " . $_POST['nextId'] . "\n";
+        }
+    }
 
-                $i=0;
-                $idInTable=false;
-                foreach ($tablica as $wiersz) {
-                    if(explode(" ", $wiersz)[0] == intval($_POST['id']) ){
-                        $tablica[$i] = $linia;
-                        $idInTable=true;
-                        break;
-                    }
-                    $i++;
-                }
-                if(!$idInTable){
-                    $tablica[] = $linia;
-                }
-
-                if($_POST['nextId'] != ""){
-                    $pierwszaLinia = "NastepneId " . $_POST['nextId'] . "\n";
-                }
+    if( isset($_GET['id']) ){
+        $i=0;
+        foreach ($tablica as $wiersz) {
+            if(explode(" ", $wiersz)[0] == intval($_GET['id']) ){
+                unset($tablica[$i]);
+                break;
             }
+            $i++;
+        }
+    }
 
-            if( isset($_GET['id']) ){
-                $i=0;
-                foreach ($tablica as $wiersz) {
-                    if(explode(" ", $wiersz)[0] == intval($_GET['id']) ){
-                        unset($tablica[$i]);
-                        break;
-                    }
-                    $i++;
-                }
-            }
+    $klucz = "";
+    if( isset( $_POST['klucz'] ) ){
+        $klucz = $_POST['klucz'];
+    }
 
-            $klucz = "";
-            if( isset( $_POST['klucz'] ) ){
-                $klucz = $_POST['klucz'];
-            }
+    $plik = @fopen("plik.txt", "w") or die ("Błąd pliku!");
+    fwrite($plik, $pierwszaLinia);
+    foreach($tablica as $wiersz){
+        fwrite($plik, $wiersz);
+    }
+    fclose($plik);
 
-            $plik = @fopen("plik.txt", "w") or die ("Błąd pliku!");
-            fwrite($plik, $pierwszaLinia);
-            foreach($tablica as $wiersz){
-                fwrite($plik, $wiersz);
-            }
-            fclose($plik);
-        ?>
+    $tab = [];
+    foreach($tablica as $wiersz){
+        $rekord = explode(" ", $wiersz);
 
-        <form action="index.php" method="post">
+        if( (!empty($klucz) && strpos(strtolower($rekord[2]), strtolower($klucz) ) === 0) || $klucz==""){
+            $tab[] = $wiersz;
+        }
+    }
 
-            <?php
-                echo "<input type='text' name='klucz' value='$klucz'>";
-             ?>
-
-            <input type="submit" value="Filtruj">
-        </form>
-
-        <br />
-
-        <a href="formularz.php">Dodaj osobę</a>
-
-        <table>
-            <thead>
-                <tr>
-    				<th>id</th>
-    				<th>Imie</th>
-    				<th>Nazwisko</th>
-    				<th>Zawod</th>
-    				<th>Pensja</th>
-                    <th>Opcje</th>
-    			</tr>
-            </thead>
-			<tbody>
-                <?php
-                    foreach($tablica as $wiersz){
-                        $rekord = explode(" ", $wiersz);
-
-                        if( (!empty($klucz) && strpos(strtolower($rekord[2]), strtolower($klucz) ) === 0) || $klucz==""){
-                        	echo '<tr>';
-        					echo "<td>$rekord[0]</td>";
-        					echo "<td>$rekord[1]</td>";
-        					echo "<td>$rekord[2]</td>";
-        					echo "<td>$rekord[3]</td>";
-        					echo "<td>$rekord[4]</td>";
-                            echo "<td>";
-                            echo "<a href='formularz.php?id=$rekord[0]' class='blue'>Edytuj</a>";
-                            echo "<a href='index.php?id=$rekord[0]' class='red'>Usuń</a>";
-                            echo "</td>";
-        					echo "</tr>";
-                        }
-                    }
-                ?>
-            </tbody>            
-        </table>
-    </body>
-</html>
+include 'widokListy.php';
