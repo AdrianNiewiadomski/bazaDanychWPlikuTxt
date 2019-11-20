@@ -1,45 +1,41 @@
 <?php
-    $id =  "";
     $nextId = "";
-    $imie =  "";
-    $nazwisko =  "";
-    $zawod =  "";
-    $pensja = "";
+    // $id =  "";    
+    // $imie =  "";
+    // $nazwisko =  "";
+    // $zawod =  "";
+    // $pensja = "";
+    include 'Osoba.class.php';
+    $osoba = new Osoba("", "", "", "", "");
 
     $plik = @fopen("plik.txt", "r") or die ("Błąd pliku!");
 
+    // podanie id oznacza edycje osoby
     if(isset($_GET['id'])){
-        //echo $_GET['id'];
-        $id = $_GET['id'];
+        // $id = $_GET['id'];
+        $osoba->id = $_GET['id'];
 
         fgets($plik);
-        // $i=1;
-        // while( $i<$id){
+
         while(true){
-            // $tab = fgets($plik);
-            // $i++;
             $wiersz = fgets($plik);
-            if(explode(" ", $wiersz)[0]==$id){
+            // if(explode(" ", $wiersz)[0]==$id){
+            if(explode(" ", $wiersz)[0]==$osoba->id){
                 break;
             }
         }
-        // $wiersz = fgets($plik);
-        // fclose($plik);
+
         $rekord = explode(" ", $wiersz);
-        $imie = $rekord[1];
-        $nazwisko = $rekord[2];
-        $zawod = $rekord[3];
-        $pensja = $rekord[4];
+        $osoba->imie = $rekord[1];
+        $osoba->nazwisko = $rekord[2];
+        $osoba->zawod = $rekord[3];
+        $osoba->pensja = $rekord[4];
+
+    // niepodanie id oznacza tworzenie nowej osoby
     } else {
-        // $i=0;
-        // while( !feof($plik)){
-        //         fgets($plik);
-        //         //echo $i;
-        //         $i++;
-        // }
-        // $id=$i;
-        $id = trim(explode(" ", fgets($plik) )[1]);
-        $nextId = intval($id)+1;
+
+        $osoba->id = trim(explode(" ", fgets($plik) )[1]);
+        $nextId = intval($osoba->id)+1;
     }
 
     fclose($plik);

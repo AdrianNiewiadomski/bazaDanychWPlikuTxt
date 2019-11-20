@@ -1,4 +1,4 @@
-NastepneId 18
+NastepneId 19
 1 Jan Kowalski Monter 3500
 2 Robert Nowak Administrator 4500
 5 Krzysztof Głowacki Kierownik 6000
@@ -6,4 +6,4 @@ NastepneId 18
 9 Zygmunt Kornik Developer 4500
 13 Konstanty Kwalifikowany Technik 3500
 15 Zuzanna Wiśniewska Designer 4000
-17 Szewczyk Dratewka Krawiec 3400
+18 Szewczyk Dratewka Krawiec 3400

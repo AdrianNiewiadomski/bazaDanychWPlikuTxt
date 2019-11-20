@@ -11,16 +11,16 @@
         <form action="index.php" method="post">
 
             <?php
-                echo "<input type='hidden' name='id' value='$id'>";
+                echo "<input type='hidden' name='id' value='$osoba->id'>";
                 echo "<input type='hidden' name='nextId' value='$nextId'>";
                 echo "Imię:<br/>";
-                echo "<input type='text' name='imie' value='$imie'>";
+                echo "<input type='text' name='imie' value='$osoba->imie'>";
                 echo "<br/>Nazwisko:<br/>";
-                echo "<input type='text' name='nazwisko' value='$nazwisko'>";
+                echo "<input type='text' name='nazwisko' value='$osoba->nazwisko'>";
                 echo "<br/>Zawód:<br/>";
-                echo "<input type='text' name='zawod' value='$zawod'>";
+                echo "<input type='text' name='zawod' value='$osoba->zawod'>";
                 echo "<br/>Pensja:<br/>";
-                echo "<input type='text' name='pensja' value='$pensja'>";
+                echo "<input type='text' name='pensja' value='$osoba->pensja'>";
             ?>
 
             <br/>

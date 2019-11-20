@@ -14,15 +14,9 @@
             $this->pensja    = trim($pensja);
         }
 
-        // function __construct($linia){
         public static function utworzOsobe($linia){
             $rekord = explode(" ", $linia);
 
-            // $this->id       = $rekord[0];
-            // $this->imie     = $rekord[1];
-            // $this->nazwisko = $rekord[2];
-            // $this->zawod    = $rekord[3];
-            // $this->pensja   = $rekord[4];
             $nowaOsoba = new Osoba($rekord[0], $rekord[1], $rekord[2], $rekord[3], $rekord[4]);
             return $nowaOsoba;
         }
