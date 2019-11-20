@@ -6,8 +6,6 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-
-
         <form action="index.php" method="post">
 
             <?php
@@ -18,7 +16,6 @@
         </form>
 
         <br />
-
         <a href="formularz.php">Dodaj osobę</a>
 
         <table>
@@ -34,24 +31,6 @@
             </thead>
 			<tbody>
                 <?php
-                    // foreach($tablica as $wiersz){
-                    //     $rekord = explode(" ", $wiersz);
-                    //
-                    //     if( (!empty($klucz) && strpos(strtolower($rekord[2]), strtolower($klucz) ) === 0) || $klucz==""){
-                    //     	echo '<tr>';
-        			// 		echo "<td>$rekord[0]</td>";
-        			// 		echo "<td>$rekord[1]</td>";
-        			// 		echo "<td>$rekord[2]</td>";
-        			// 		echo "<td>$rekord[3]</td>";
-        			// 		echo "<td>$rekord[4]</td>";
-                    //         echo "<td>";
-                    //         echo "<a href='formularz.php?id=$rekord[0]' class='blue'>Edytuj</a>";
-                    //         echo "<a href='index.php?id=$rekord[0]' class='red'>Usuń</a>";
-                    //         echo "</td>";
-        			// 		echo "</tr>";
-                    //     }
-                    // }
-
                     foreach($tab as $wiersz){
                         $rekord = explode(" ", $wiersz);
 

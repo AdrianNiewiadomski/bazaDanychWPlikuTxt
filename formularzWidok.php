@@ -9,7 +9,6 @@
 
 
         <form action="index.php" method="post">
-            <!-- id:<br/> -->
 
             <?php
                 echo "<input type='hidden' name='id' value='$id'>";

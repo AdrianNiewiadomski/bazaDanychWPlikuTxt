@@ -5,5 +5,5 @@ NastepneId 18
 7 Karol Jagiełło Tester 3800
 9 Zygmunt Kornik Developer 4500
 13 Konstanty Kwalifikowany Technik 3500
-15 Zuzanna Wiśniewska Deisgner 4000
+15 Zuzanna Wiśniewska Designer 4000
 17 Szewczyk Dratewka Krawiec 3400
