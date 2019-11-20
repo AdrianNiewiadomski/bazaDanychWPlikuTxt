@@ -1,12 +1,12 @@
 <?php
     class Osoba {
-        public $id;
-        public $imie;
-        public $nazwisko;
-        public $zawod;
-        public $pensja;
+        private $id;
+        private $imie;
+        private $nazwisko;
+        private $zawod;
+        private $pensja;
 
-        function __construct($id, $imie, $nazwisko, $zawod, $pensja){
+        public function __construct($id, $imie, $nazwisko, $zawod, $pensja){
             $this->id        = $id;
             $this->imie      = $imie;
             $this->nazwisko  = $nazwisko;
@@ -21,33 +21,45 @@
             return $nowaOsoba;
         }
 
-        function get_id() {
+        public function get_id() {
             return $this->id;
         }
 
-        function get_imie() {
+        public function set_id($id) {
+            $this->id = $id;
+        }
+
+        public function get_imie() {
             return $this->imie;
         }
 
-        function get_nazwisko() {
+        public function get_nazwisko() {
             return $this->nazwisko;
         }
 
-        function get_zawod() {
+        public function get_zawod() {
             return $this->zawod;
         }
 
-        function get_pensja() {
+        public function get_pensja() {
             return $this->pensja;
         }
 
-        function toString(){
+        public function toString(){
             $linia = $this->id . " ";
             $linia .= $this->imie . " ";
             $linia .= $this->nazwisko . " ";
             $linia .= $this->zawod . " ";
             $linia .= $this->pensja . "\n";
             return $linia;
+        }
+
+        public function setOsoba($wiersz){
+            $rekord = explode(" ", $wiersz);
+            $this->imie = $rekord[1];
+            $this->nazwisko = $rekord[2];
+            $this->zawod = $rekord[3];
+            $this->pensja = $rekord[4];
         }
     }
 ?>

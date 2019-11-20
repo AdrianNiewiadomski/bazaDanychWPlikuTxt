@@ -31,18 +31,26 @@
             </thead>
 			<tbody>
                 <?php
-                    foreach($tab as $wiersz){
-                        $rekord = explode(" ", $wiersz);
+                    // foreach($tab as $wiersz){
+                    foreach($wybraneOsoby as $osoba){
+                        // $rekord = explode(" ", $wiersz);
 
                         echo '<tr>';
-            			echo "<td>$rekord[0]</td>";
-            			echo "<td>$rekord[1]</td>";
-            			echo "<td>$rekord[2]</td>";
-            			echo "<td>$rekord[3]</td>";
-            			echo "<td>$rekord[4]</td>";
+            			// echo "<td>$rekord[0]</td>";
+            			// echo "<td>$rekord[1]</td>";
+            			// echo "<td>$rekord[2]</td>";
+            			// echo "<td>$rekord[3]</td>";
+            			// echo "<td>$rekord[4]</td>";
+                        echo "<td>".$osoba->get_id()."</td>";
+                        echo "<td>".$osoba->get_imie()."</td>";
+                        echo "<td>".$osoba->get_nazwisko()."</td>";
+                        echo "<td>".$osoba->get_zawod()."</td>";
+                        echo "<td>".$osoba->get_pensja()."</td>";
                         echo "<td>";
-                        echo "<a href='formularz.php?id=$rekord[0]' class='blue'>Edytuj</a>";
-                        echo "<a href='index.php?id=$rekord[0]' class='red'>Usuń</a>";
+                        // echo "<a href='formularz.php?id=$rekord[0]' class='blue'>Edytuj</a>";
+                        echo "<a href='formularz.php?id=".$osoba->get_id()."' class='blue'>Edytuj</a>";
+                        // echo "<a href='index.php?id=$rekord[0]' class='red'>Usuń</a>";
+                        echo "<a href='index.php?id=".$osoba->get_id()."' class='red'>Usuń</a>";
                         echo "</td>";
             			echo "</tr>";
                     }

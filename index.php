@@ -22,7 +22,7 @@
 
         foreach ($osoby as $osoba) {
             // Jesli spelnione to osoba jest w bazie danych (wiec nalezy poprawic jej dane)
-            if($osoba->id == $nowaOsoba->id){
+            if($osoba->get_id() == $nowaOsoba->get_id()){
                 $osoby[$i] = $nowaOsoba;
                 $idInTable=true;
                 break;
@@ -45,7 +45,8 @@
 
         foreach ($osoby as $osoba) {
 
-            if($osoba->id == intval($_GET['id']) ){
+            // if($osoba->id == intval($_GET['id']) ){
+            if($osoba->get_id() == intval($_GET['id']) ){
                 // funkcja unset usuwan wskazana komorke tablicy
                 unset($osoby[$i]);
                 break;
@@ -68,12 +69,13 @@
     }
     fclose($plik);
 
-    $tab = [];
-
+    // $tab = [];
+    $wybraneOsoby = [];
     foreach($osoby as $osoba){
 
-        if( (!empty($klucz) && strpos(strtolower($osoba->nazwisko), strtolower($klucz) ) === 0) || $klucz==""){
-            $tab[] = $osoba->toString();
+        if( (!empty($klucz) && strpos(strtolower($osoba->get_nazwisko()), strtolower($klucz) ) === 0) || $klucz==""){
+            // $tab[] = $osoba->toString();
+            $wybraneOsoby[] = $osoba;
         }
     }
 

@@ -1,6 +1,6 @@
 <?php
     $nextId = "";
-    // $id =  "";    
+    // $id =  "";
     // $imie =  "";
     // $nazwisko =  "";
     // $zawod =  "";
@@ -13,29 +13,33 @@
     // podanie id oznacza edycje osoby
     if(isset($_GET['id'])){
         // $id = $_GET['id'];
-        $osoba->id = $_GET['id'];
-
+        // $osoba->id = $_GET['id'];
+        $osoba->set_id($_GET['id']);
         fgets($plik);
 
         while(true){
             $wiersz = fgets($plik);
             // if(explode(" ", $wiersz)[0]==$id){
-            if(explode(" ", $wiersz)[0]==$osoba->id){
+            // if(explode(" ", $wiersz)[0]==$osoba->id){
+            if(explode(" ", $wiersz)[0]==$osoba->get_id()){
                 break;
             }
         }
 
-        $rekord = explode(" ", $wiersz);
-        $osoba->imie = $rekord[1];
-        $osoba->nazwisko = $rekord[2];
-        $osoba->zawod = $rekord[3];
-        $osoba->pensja = $rekord[4];
+        // $rekord = explode(" ", $wiersz);
+        // $osoba->imie = $rekord[1];
+        // $osoba->nazwisko = $rekord[2];
+        // $osoba->zawod = $rekord[3];
+        // $osoba->pensja = $rekord[4];
+        $osoba->setOsoba($wiersz);
 
     // niepodanie id oznacza tworzenie nowej osoby
     } else {
 
-        $osoba->id = trim(explode(" ", fgets($plik) )[1]);
-        $nextId = intval($osoba->id)+1;
+        // $osoba->id = trim(explode(" ", fgets($plik) )[1]);
+        $osoba->set_id( trim(explode(" ", fgets($plik) )[1]) );
+        // $nextId = intval($osoba->id)+1;
+        $nextId = intval($osoba->get_id())+1;
     }
 
     fclose($plik);
